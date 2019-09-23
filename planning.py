@@ -85,7 +85,7 @@ def compute_uncertainty_batch(model, input_images, input_states, actions, target
             unnormalize=True, s_mean=model.stats['s_mean'], s_std=model.stats['s_std']
         )
         lane_cost, prox_map_l = utils.lane_cost(pred_images, car_sizes_temp)
-        offroad_cost = utils.lane_cost(pred_images, prox_map_l)
+        offroad_cost = utils.offroad_cost(pred_images, prox_map_l)
         pred_costs += model.opt.lambda_l * lane_cost + model.opt.lambda_o * offroad_cost
 
     pred_images = pred_images.view(n_models, bsize, npred, -1)

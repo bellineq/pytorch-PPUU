@@ -56,7 +56,7 @@ def lane_cost(images, car_size):
 
     width, length = car_size[:, 0], car_size[:, 1]  # feet
     width = width * SCALE * (0.3048 * 24 / 3.7)  # pixels
-    length = length * SCALE * (0.3048 * 24 / 3.7)  # pixels 
+    length = length * SCALE * (0.3048 * 24 / 3.7)  # pixels
 
     # Create separable proximity mask
     width.fill_(24 * SCALE / 2)
@@ -110,7 +110,7 @@ def proximity_cost(images, states, car_size=(6.4, 14.3), green_channel=1, unnorm
     speed = states[:, 2:].norm(2, 1) * SCALE  # pixel/s
     width, length = car_size[:, 0], car_size[:, 1]  # feet
     width = width * SCALE * (0.3048 * 24 / 3.7)  # pixels
-    length = length * SCALE * (0.3048 * 24 / 3.7)  # pixels 
+    length = length * SCALE * (0.3048 * 24 / 3.7)  # pixels
 
     safe_distance = torch.abs(speed) * safe_factor + (1 * 24 / 3.7) * SCALE  # plus one metre (TODO change)
 
@@ -162,11 +162,11 @@ def parse_car_path(path):
 
 
 def plot_mean_and_CI(mean, lb, ub, color_mean=None, color_shading=None):
-    # plot the shaded range of the confidence intervals                                                                                                                                                   
+    # plot the shaded range of the confidence intervals
     time_steps = [i + 3 for i in range(len(mean))]
     plt.fill_between(time_steps, ub, lb,
                      color=color_shading, alpha=0.2)
-    # plot the mean on top                                                                                                                                                                                
+    # plot the mean on top
     plt.plot(time_steps, mean, color_mean)
 
 
@@ -373,9 +373,9 @@ def hinge_loss(u, z):
 
 # second represents the prior
 def kl_criterion(mu1, logvar1, mu2, logvar2):
-    # KL( N(mu_1, sigma2_1) || N(mu_2, sigma2_2)) = 
+    # KL( N(mu_1, sigma2_1) || N(mu_2, sigma2_2)) =
     #   log( sqrt(
-    # 
+    #
     bsize = mu1.size(0)
     sigma1 = logvar1.mul(0.5).exp()
     sigma2 = logvar2.mul(0.5).exp()
@@ -502,7 +502,7 @@ def parse_command_line(parser=None):
     m2 = 'model=fwd-cnn-layers=3-bsize=64-ncond=20-npred=20-lrt=0.0001-nfeature=256-dropout=0.1-gclip=5.0-' + \
          'warmstart=0-seed=1.step200000.model'
     m3 = 'model=fwd-cnn-vae-fp-layers=3-bsize=64-ncond=20-npred=20-lrt=0.0003-nfeature=256-dropout=0.1-nz=32-' + \
-         'beta=1e-06-zdropout=0.5-gclip=5.0-warmstart=0-seed=1.step380000.model
+         'beta=1e-06-zdropout=0.5-gclip=5.0-warmstart=0-seed=1.step380000.model'
     parser.add_argument('-mfile', type=str, default=m3, help='dynamics model used to train the policy network')
     parser.add_argument('-value_model', type=str, default='')
     parser.add_argument('-load_model_file', type=str, default='')
