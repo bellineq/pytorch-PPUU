@@ -6,7 +6,7 @@ import random
 import numpy as np
 import scipy.misc
 import sys, pickle
-from skimage import measure, transform
+# from skimage import measure, transform
 # from matplotlib.image import imsave
 import PIL
 from custom_graphics import draw_dashed_line, draw_text, draw_rect
@@ -977,7 +977,7 @@ class Simulator(core.Env):
                     # Empty ego-surface
                     ego_surface.fill((0, 0, 0))
                     # Draw myself blue on the ego_surface
-                    ego_rect = v.draw(ego_surface, mode='ego-car', offset=max_extension)
+                    # ego_rect = v.draw(ego_surface, mode='ego-car', offset=max_extension)
                     # Add me on top of others without shadowing
                     vehicle_surface.blit(ego_surface, ego_rect, ego_rect, special_flags=pygame.BLEND_MAX)
                     v.store('state_image', (max_extension, vehicle_surface, width_height, scale, self.frame))
