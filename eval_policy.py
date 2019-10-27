@@ -48,8 +48,8 @@ M3 = 'model=fwd-cnn-ten3-layers=3-bsize=64-ncond=20-npred=20-lrt=0.0001-nfeature
 M4 = 'model=fwd-cnn-ten3-layers=3-bsize=64-ncond=20-npred=20-lrt=0.0001-nfeature=256-nhidden=128-fgeom=1-' + \
      'zeroact=0-zmult=0-dropout=0.1-nz=32-beta=0.0-zdropout=0.5-gclip=5.0-warmstart=1-seed=1.step200000.model'
 M5 = 'model=fwd-cnn-vae-fp-layers=3-bsize=64-ncond=20-npred=20-lrt=0.0003-nfeature=256-dropout=0.1-nz=32-' + \
-     'beta=1e-06-zdropout=0.5-gclip=5.0-warmstart=0-seed=1.step380000.model'
-parser.add_argument('-mfile', type=str, default=M5, help=' ')
+     'beta=1e-06-zdropout=0.5-gclip=5.0-warmstart=0-seed=1.step600000.model'
+parser.add_argument('-mfile', type=str, default=M1, help=' ')
 parser.add_argument('-value_model', type=str, default='', help=' ')
 parser.add_argument('-policy_model', type=str, default='', help=' ')
 parser.add_argument('-save_sim_video', action='store_true', help='Save simulator video in <frames> info attribute')

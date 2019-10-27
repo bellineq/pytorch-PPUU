@@ -96,7 +96,8 @@ def offroad_cost(images, proximity_mask):
     return costs.view(bsize, npred)
 
 
-def proximity_cost(images, states, car_size=(6.4, 14.3), green_channel=1, unnormalize=False, s_mean=None, s_std=None):
+def proximity_cost(images, states, car_size=(6.4, 14.3), green_channel=1,
+                   unnormalize=False, s_mean=None, s_std=None, rtrn_max=False):
     SCALE = 0.25
     safe_factor = 1.5
     bsize, npred, nchannels, crop_h, crop_w = images.size()
@@ -491,7 +492,7 @@ def parse_command_line(parser=None):
     parser.add_argument('-u_hinge', type=float, default=0.5)
     parser.add_argument('-lambda_a', type=float, default=0.0, help='l2 regularization on actions')
     parser.add_argument('-lambda_l', type=float, default=0.2, help='coefficient of lane cost')
-    parser.add_argument('-lambda_o', type=float, default=0.2, help='coefficient of offroad cost')
+    parser.add_argument('-lambda_o', type=float, default=1.0, help='coefficient of offroad cost')
     parser.add_argument('-lrt_z', type=float, default=0.0)
     parser.add_argument('-z_updates', type=int, default=0)
     parser.add_argument('-infer_z', action='store_true')
@@ -502,8 +503,10 @@ def parse_command_line(parser=None):
     m2 = 'model=fwd-cnn-layers=3-bsize=64-ncond=20-npred=20-lrt=0.0001-nfeature=256-dropout=0.1-gclip=5.0-' + \
          'warmstart=0-seed=1.step200000.model'
     m3 = 'model=fwd-cnn-vae-fp-layers=3-bsize=64-ncond=20-npred=20-lrt=0.0003-nfeature=256-dropout=0.1-nz=32-' + \
-         'beta=1e-06-zdropout=0.5-gclip=5.0-warmstart=0-seed=1.step380000.model'
-    parser.add_argument('-mfile', type=str, default=m3, help='dynamics model used to train the policy network')
+         'beta=1e-06-zdropout=0.5-gclip=5.0-warmstart=0-seed=1.step600000.model'
+    m4 = 'model=fwd-cnn-vae-fp-layers=3-bsize=64-ncond=20-npred=20-lrt=0.0001-nfeature=256-dropout=0.1-nz=32-' + \
+         'beta=1e-06-zdropout=0.5-gclip=5.0-warmstart=1-seed=1.step400000.model'
+    parser.add_argument('-mfile', type=str, default=m1, help='dynamics model used to train the policy network')
     parser.add_argument('-value_model', type=str, default='')
     parser.add_argument('-load_model_file', type=str, default='')
     parser.add_argument('-combine', type=str, default='add')

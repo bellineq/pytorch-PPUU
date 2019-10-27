@@ -90,7 +90,7 @@ else:
     # specify deterministic model we use to initialize parameters with
     if opt.warmstart == 1:
         prev_model = f'{opt.model_dir}/model=fwd-cnn-layers={opt.layers}-bsize=8-ncond={opt.ncond}-npred={opt.npred}-lrt=0.0001-nfeature={opt.nfeature}-dropout={opt.dropout}-gclip=5.0'
-        prev_model += '-warmstart=0-seed=1.step200000.model'
+        prev_model += '-warmstart=0-seed=1.step400000.model'
     else:
         prev_model = ''
 
